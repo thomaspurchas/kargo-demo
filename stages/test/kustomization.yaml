@@ -1,10 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
 - ../../base
 - configmap.yaml
-
 patches:
 - target:
     kind: Service
@@ -13,3 +11,6 @@ patches:
     - op: replace
       path: /spec/ports/0/nodePort
       value: 30081
+images:
+- name: public.ecr.aws/nginx/nginx
+  newTag: 1.27.1
